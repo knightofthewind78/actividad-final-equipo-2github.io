@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad Final </title> <title> equipo 2</title>
+    <style>
+        body {
+            font-family: Orbitron;
+            margin: 0;
+            padding: 0;
+            background-color: #5a4444;
+        }
+        header {
+            background-color: #273241; /* Color cobalto */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .container {
+            padding: 20px;
+        }
+        select, input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #273241; /* Color cobalto */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #273241; /* Un tono más oscuro de cobalto */
+        }
+        footer {
+            background-color: #273241;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Actividad Final 3ra Evaluación</h1>
+    </header>
+    <div class="container">
+        <label for="algoritmo">Selecciona un algoritmo:</label>
+        <select id="algoritmo">
+            <option value="1">Suma de 2 números</option>
+            <option value="2">Identificar par o impar</option>
+            <option value="3">Mayor de 3 números</option>
+            <option value="4">Conversión Celsius a Fahrenheit</option>
+            <option value="5">Contar letras de una cadena</option>
+            <option value="6">Identificar si un número es primo</option>
+            <option value="7">Convertir minutos a segundos</option>
+            <option value="8">Identificar si un número es negativo, positivo o cero</option>
+            <option value="9">Contar vocales de una cadena</option>
+            <option value="10">Número aleatorio entre 2 números</option>
+            <option value="11">Generar lista de números impares</option>
+            <option value="12">Contar palabras de una cadena</option>
+        </select>
+
+        <div id="inputs">
+            <!-- Los inputs para cada algoritmo se añadirán aquí dinámicamente -->
+        </div>
+
+        <button onclick="ejecutarAlgoritmo()">Ejecutar</button>
+        <p id="resultado"></p>
+    </div>
+    <footer>
+        <p>&copy; Integrantes del equipo:</p>
+        <ul>
+            <li>Cruz Cordoba Angel Yahir</li>
+            <li>Duran Dominguez Heberto</li>
+            <li>Esquivel Cordoba Ricardo Austria</li>
+            <li>Fuentes Avendaño Jesus Alberto</li>
+            <li>Garcia Hernandez Erick Alfonso</li>
+        </ul>
+    </footer>
+    
+   
+    <script>
+        function generarInputs() {
+            const algoritmo = document.getElementById("algoritmo").value;
+            let inputsHTML = "";
+            switch (algoritmo) {
+                case "1":
+                    inputsHTML = `
+                        <label for="num1">Número 1:</label>
+                        <input type="number" id="num1">
+                        <label for="num2">Número 2:</label>
+                        <input type="number" id="num2">
+                    `;
+                    break;
+                case "2":
+                    inputsHTML = `
+                        <label for="numParImpar">Número:</label>
+                        <input type="number" id="numParImpar">
+                    `;
+                    break;
+                case "3":
+                    inputsHTML = `
+                        <label for="num3">Número 1:</label>
+                        <input type="number" id="num3">
+                        <label for="num4">Número 2:</label>
+                        <input type="number" id="num4">
+                        <label for="num5">Número 3:</label>
+                        <input type="number" id="num5">
+                    `;
+                    break;
+                case "4":
+                    inputsHTML = `
+                        <label for="celsius">Grados Celsius:</label>
+                        <input type="number" id="celsius">
+                    `;
+                    break;
+                case "5":
+                    inputsHTML = `
+                        <label for="cadena">Cadena:</label>
+                        <input type="text" id="cadena">
+                    `;
+                    break;
+                case "6":
+                    inputsHTML = `
+                        <label for="numPrimo">Número:</label>
+                        <input type="number" id="numPrimo">
+                    `;
+                    break;
+                case "7":
+                    inputsHTML = `
+                        <label for="minutos">Minutos:</label>
+                        <input type="number" id="minutos">
+                    `;
+                    break;
+                case "8":
+                    inputsHTML = `
+                        <label for="numSigno">Número:</label>
+                        <input type="number" id="numSigno">
+                    `;
+                    break;
+                case "9":
+                    inputsHTML = `
+                        <label for="cadenaVocales">Cadena:</label>
+                        <input type="text" id="cadenaVocales">
+                    `;
+                    break;
+                case "10":
+                    inputsHTML = `
+                        <label for="min">Mínimo:</label>
+                        <input type="number" id="min">
+                        <label for="max">Máximo:</label>
+                        <input type="number" id="max">
+                    `;
+                    break;
+                case "11":
+                    inputsHTML = `
+                        <label for="limiteImpares">Límite:</label>
+                        <input type="number" id="limiteImpares">
+                    `;
+                    break;
+                case "12":
+                    inputsHTML = `
+                        <label for="cadenaPalabras">Cadena:</label>
+                        <input type="text" id="cadenaPalabras">
+                    `;
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById("inputs").innerHTML = inputsHTML;
+        }
+
+        function ejecutarAlgoritmo() {
+            const algoritmo = document.getElementById("algoritmo").value;
+            let resultado = "";
+
+            switch (algoritmo) {
+                case "1":
+                    const num1 = parseFloat(document.getElementById("num1").value);
+                    const num2 = parseFloat(document.getElementById("num2").value);
+                    resultado = `La suma es: ${num1 + num2}`;
+                    break;
+                case "2":
+                    const numParImpar = parseInt(document.getElementById("numParImpar").value);
+                    resultado = numParImpar % 2 === 0 ? "Es par" : "Es impar";
+                    break;
+                case "3":
+                    const num3 = parseInt(document.getElementById("num3").value);
+                    const num4 = parseInt(document.getElementById("num4").value);
+                    const num5 = parseInt(document.getElementById("num5").value);
+                    resultado = Math.max(num3, num4, num5);
+                    break;
+                case "4":
+                    const celsius = parseFloat(document.getElementById("celsius").value);
+                    resultado = `${celsius}°C es igual a ${(celsius * 9/5) + 32}°F`;
+                    break;
+                case "5":
+                    const cadena = document.getElementById("cadena").value;
+                    resultado = `La cadena tiene ${cadena.length} letras.`;
+                    break;
+                case "6":
+                    const numPrimo = parseInt(document.getElementById("numPrimo").value);
+                    resultado = esPrimo(numPrimo) ? "Es primo" : "No es primo";
+                    break;
+                case "7":
+                    const minutos = parseInt(document.getElementById("minutos").value);
+                    resultado = `${minutos} minutos son ${minutos * 60} segundos.`;
+                    break;
+                case "8":
+                    const numSigno = parseInt(document.getElementById("numSigno").value);
+                    resultado = numSigno > 0 ? "Es positivo" : (numSigno < 0 ? "Es negativo" : "Es cero");
+                    break;
+                case "9":
+                    const cadenaVocales = document.getElementById("cadenaVocales").value;
+                    resultado = `La cadena tiene ${contarVocales(cadenaVocales)} vocales.`;
+                    break;
+                case "10":
+                    const min = parseInt(document.getElementById("min").value);
+                    const max = parseInt(document.getElementById("max").value);
+                    resultado = `Número aleatorio: ${Math.floor(Math.random() * (max - min + 1)) + min}`;
+                    break;
+                case "11":
+                    const limiteImpares = parseInt(document.getElementById("limiteImpares").value);
+                    resultado = `Números impares: ${generarImpares(limiteImpares)}`;
+                    break;
+                case "12":
+                    const cadenaPalabras = document.getElementById("cadenaPalabras").value;
+                    resultado = `La cadena tiene ${cadenaPalabras.split(/\s+/).length} palabras.`;
+                    break;
+                default:
+                    break;
+            }
+
+            document.getElementById("resultado").innerText = resultado;
+        }
+
+        function esPrimo(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function contarVocales(cadena) {
+            return cadena.match(/[aeiouáéíóúAEIOUÁÉÍÓÚ]/g)?.length || 0;
+        }
+
+        function generarImpares(limite) {
+            let impares = [];
+            for (let i = 1; i <= limite; i++) {
+                if (i % 2 !== 0) impares.push(i);
+            }
+            return impares.join(", ");
+        }
+
+        // Generar inputs al cargar
+        document.getElementById("algoritmo").addEventListener("change", generarInputs);
+        window.onload = generarInputs;
+    </script>
+</body>
+</html>
